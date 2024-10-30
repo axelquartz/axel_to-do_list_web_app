@@ -1,5 +1,3 @@
-//Prompt
-const prompt = require("prompt-sync")({ sigint: true });
 // Create an array for each list
 let tasksToDo = [];
 let tasksFinished = [];
@@ -47,31 +45,25 @@ tasksToDo.push(newTask1);
 let newTask2 = new Task("task 2", "description 2", "to do");
 tasksToDo.push(newTask2);
 
-// Move a task from one list to another
+let taskName = document.getElementById("task-name");
+let taskDescription = document.getElementById("task-description");
 
-// Create task from user prompt (maybe with a for loop)
-function createTask() {
-  let taskName = "New added Name";
-  let taskDescription = "New added Description";
-  let newTask = new Task(taskName, taskDescription, "to do");
-  tasksToDo.push(newTask);
-  // Log status
-  // console.log(`Tasks to do: `, tasksToDo);
-  // console.log(`Tasks finished: `, tasksFinished);
-  // console.log(`Tasks deleted: `, tasksDeleted);
-  return;
-}
+// function createTask() {
+//   let newTask = new Task(taskName, taskDescription, "to do");
+//   tasksToDo.push(newTask);
+//   // Log status
+//   // console.log(`Tasks to do: `, tasksToDo);
+//   // console.log(`Tasks finished: `, tasksFinished);
+//   // console.log(`Tasks deleted: `, tasksDeleted);
+//   return;
+// }
 
-createTask();
-createTask();
+// createTask();
+// createTask();
 newTask2.removeTask();
 newTask1.deleteTask();
 
 // Log status
 console.log(`Tasks to do: `, tasksToDo, `--------------------------------`);
-console.log(
-  `Tasks finished: `,
-  tasksFinished,
-  `--------------------------------`
-);
+console.log(`Tasks finished: `, tasksFinished, `--------------------------------`);
 console.log(`Tasks deleted: `, tasksDeleted);
