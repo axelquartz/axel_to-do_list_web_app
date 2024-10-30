@@ -1,3 +1,5 @@
+//Prompt
+const prompt = require("prompt-sync")({ sigint: true });
 // Create an array for each list
 let tasksToDo = [];
 let tasksFinished = [];
@@ -11,14 +13,30 @@ class Task {
     this.status = status;
   }
 
-  moveTask() {
+  deleteTask() {
     // Move task to other list
-    if (this.status === "to do") {
+    if (this.status === "to do" || this.status === "deleted") {
       tasksFinished.push(this);
       tasksToDo.splice(tasksToDo.indexOf(this), 1);
       this.status = "finished";
-    } else if (this.status === "finished") {
+    }
+  }
+  // Function to remove task
+  removeTask() {
+    if (this.status === "to do" || this.status === "finished") {
+      tasksDeleted.push(this);
+      tasksToDo.splice(tasksToDo.indexOf(this), 1);
+      tasksFinished.splice(tasksDeleted.indexOf(this), 1);
+      this.status = "deleted";
+    }
+  }
+  // Function to restore deleted task
+  restoreTask() {
+    if (this.status === "deleted" || this.status === "finished") {
       tasksToDo.push(this);
+      tasksDeleted.splice(tasksDeleted.indexOf(this), 1);
+      tasksFinished.splice(tasksDeleted.indexOf(this), 1);
+      this.status = "to do";
     }
   }
 }
@@ -30,12 +48,30 @@ let newTask2 = new Task("task 2", "description 2", "to do");
 tasksToDo.push(newTask2);
 
 // Move a task from one list to another
-newTask1.moveTask();
-// newTask2.moveTask();
 
-// Create task from user prompt
+// Create task from user prompt (maybe with a for loop)
+function createTask() {
+  let taskName = "New added Name";
+  let taskDescription = "New added Description";
+  let newTask = new Task(taskName, taskDescription, "to do");
+  tasksToDo.push(newTask);
+  // Log status
+  // console.log(`Tasks to do: `, tasksToDo);
+  // console.log(`Tasks finished: `, tasksFinished);
+  // console.log(`Tasks deleted: `, tasksDeleted);
+  return;
+}
+
+createTask();
+createTask();
+newTask2.removeTask();
+newTask1.deleteTask();
 
 // Log status
-console.log(`Tasks to do: `, tasksToDo);
-console.log(`Tasks finished: `, tasksFinished);
+console.log(`Tasks to do: `, tasksToDo, `--------------------------------`);
+console.log(
+  `Tasks finished: `,
+  tasksFinished,
+  `--------------------------------`
+);
 console.log(`Tasks deleted: `, tasksDeleted);
