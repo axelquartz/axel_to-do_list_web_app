@@ -26,9 +26,12 @@ class Task {
     this.taskDelete.addEventListener("click", () => {
       this.removeTask();
     });
+    this.taskLabel = document.createElement("label");
+    this.taskLabel.innerText = this.status;
     this.taskContainer.innerHTML = `<h2>${this.name}</h2><p>${this.description}</p>`;
     this.taskContainer.append(this.taskDelete);
     this.taskContainer.append(this.taskAction);
+    this.taskContainer.append(this.taskLabel);
     this.taskAction.addEventListener("click", () => {
       // Switch list
       if (this.status === "to do") {
@@ -48,6 +51,7 @@ class Task {
       tasksToDo.splice(tasksToDo.indexOf(this), 1);
       this.status = "finished";
       finishedList.appendChild(this.taskContainer);
+      this.taskLabel.innerText = this.status;
     }
   }
   // Function to remove task
@@ -59,6 +63,7 @@ class Task {
       this.status = "deleted";
       //Remove from DOM
       deletedList.appendChild(this.taskContainer);
+      this.taskLabel.innerText = this.status;
     }
   }
   // Function to restore deleted task
@@ -69,6 +74,7 @@ class Task {
       tasksFinished.splice(tasksDeleted.indexOf(this), 1);
       this.status = "to do";
       toDoList.appendChild(this.taskContainer);
+      this.taskLabel.innerText = this.status;
     }
   }
 }
@@ -84,6 +90,11 @@ function createTask() {
   toDoList.appendChild(newTask.taskContainer);
   // Log status
   console.log(`Tasks to do: `, tasksToDo, `--------------------------------`);
+  console.log(`Tasks finished: `, tasksFinished, `--------------------------------`);
+  console.log(`Tasks deleted: `, tasksDeleted, `--------------------------------`);
+  // Clear form
+  document.querySelector("#task-name").value = "";
+  document.querySelector("#task-description").value = "";
   return;
 }
 
