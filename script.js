@@ -3,20 +3,51 @@ let tasksToDo = [];
 let tasksFinished = [];
 let tasksDeleted = [];
 
+// List containers
+let toDoList = document.getElementById("to-do-list");
+let finishedList = document.getElementById("finished-list");
+deletedList = document.getElementById("deleted-list");
+let taskContainer = document.createElement("div");
+// let taskAction = document.createElement("button");
+// taskAction.innerText = "Action";
+
 // Create a task template (object or class): name, description, method to move task to other list
 class Task {
   constructor(name, description, status) {
     this.name = name;
     this.description = description;
     this.status = status;
+    this.taskContainer = document.createElement("div");
+    this.taskContainer.classList.add("task-element");
+    this.taskAction = document.createElement("button");
+    this.taskAction.innerText = "Action";
+    this.taskDelete = document.createElement("button");
+    this.taskDelete.innerText = "Delete";
+    this.taskDelete.addEventListener("click", () => {
+      this.removeTask();
+    });
+    this.taskContainer.innerHTML = `<h2>${this.name}</h2><p>${this.description}</p>`;
+    this.taskContainer.append(this.taskDelete);
+    this.taskContainer.append(this.taskAction);
+    this.taskAction.addEventListener("click", () => {
+      // Switch list
+      if (this.status === "to do") {
+        this.finishTask();
+      } else if (this.status === "finished") {
+        this.restoreTask();
+      } else if (this.status === "deleted") {
+        this.restoreTask();
+      }
+    });
   }
 
-  deleteTask() {
+  finishTask() {
     // Move task to other list
     if (this.status === "to do" || this.status === "deleted") {
       tasksFinished.push(this);
       tasksToDo.splice(tasksToDo.indexOf(this), 1);
       this.status = "finished";
+      finishedList.appendChild(this.taskContainer);
     }
   }
   // Function to remove task
@@ -26,6 +57,8 @@ class Task {
       tasksToDo.splice(tasksToDo.indexOf(this), 1);
       tasksFinished.splice(tasksDeleted.indexOf(this), 1);
       this.status = "deleted";
+      //Remove from DOM
+      deletedList.appendChild(this.taskContainer);
     }
   }
   // Function to restore deleted task
@@ -35,30 +68,23 @@ class Task {
       tasksDeleted.splice(tasksDeleted.indexOf(this), 1);
       tasksFinished.splice(tasksDeleted.indexOf(this), 1);
       this.status = "to do";
+      toDoList.appendChild(this.taskContainer);
     }
   }
 }
 
-// Manually create a couple of new tasks and push them to the tasksToDo array
-let newTask1 = new Task("task 1", "description 1", "to do");
-tasksToDo.push(newTask1);
-let newTask2 = new Task("task 2", "description 2", "to do");
-tasksToDo.push(newTask2);
-
+// Create a new task
 function createTask() {
   let taskName = document.querySelector("#task-name").value;
   let taskDescription = document.querySelector("#task-description").value;
-  let thisTask = new Task(taskName, taskDescription, "to do");
-  tasksToDo.push(thisTask);
+  let newTask = new Task(taskName, taskDescription, "to do");
+  tasksToDo.push(newTask);
   // Append task to To Do list
-  let toDoList = document.getElementById("to-do-list");
-  let taskContainer = document.createElement("div");
-  taskContainer.innerHTML = `<div class="task-element"><h2>${thisTask.name}</h2><p>${thisTask.description}</p></div>`;
-  toDoList.appendChild(taskContainer);
+  // taskContainer.innerHTML = `<div class="task-element"><h2>${thisTask.name}</h2><p>${thisTask.description}</p></div>`;
+  toDoList.appendChild(newTask.taskContainer);
   // Log status
   console.log(`Tasks to do: `, tasksToDo, `--------------------------------`);
-
-  // return;
+  return;
 }
 
 // Submit form to create a new task
