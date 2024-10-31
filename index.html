@@ -9,16 +9,16 @@
   <body>
     <h1>To-do List Web App</h1>
     <div class="container">
-      <div class="list">To Do</div>
+      <div class="list" id="to-do-list">To Do</div>
       <div class="list">Finished</div>
       <div class="list">Deleted</div>
     </div>
     <!--Form to Create Task-->
-    <form>
+    <div class="'create-task">
       <input type="text" name="task-name" id="task-name" placeholder="Enter task name" />
       <input type="text" name="task-description" id="task-description" placeholder="Enter description" />
-      <button type="submit">Create Task</button>
-    </form>
-    <script src="script.js" defer></script>
+      <button id="create-button">Create Tasks</button>
+    </div>
+    <script src="script.js"></script>
   </body>
 </html>

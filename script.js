@@ -45,25 +45,22 @@ tasksToDo.push(newTask1);
 let newTask2 = new Task("task 2", "description 2", "to do");
 tasksToDo.push(newTask2);
 
-let taskName = document.getElementById("task-name");
-let taskDescription = document.getElementById("task-description");
+function createTask() {
+  let taskName = document.querySelector("#task-name").value;
+  let taskDescription = document.querySelector("#task-description").value;
+  let thisTask = new Task(taskName, taskDescription, "to do");
+  tasksToDo.push(thisTask);
+  // Append task to To Do list
+  let toDoList = document.getElementById("to-do-list");
+  let taskContainer = document.createElement("div");
+  taskContainer.innerHTML = `<div class="task-element"><h2>${thisTask.name}</h2><p>${thisTask.description}</p></div>`;
+  toDoList.appendChild(taskContainer);
+  // Log status
+  console.log(`Tasks to do: `, tasksToDo, `--------------------------------`);
 
-// function createTask() {
-//   let newTask = new Task(taskName, taskDescription, "to do");
-//   tasksToDo.push(newTask);
-//   // Log status
-//   // console.log(`Tasks to do: `, tasksToDo);
-//   // console.log(`Tasks finished: `, tasksFinished);
-//   // console.log(`Tasks deleted: `, tasksDeleted);
-//   return;
-// }
+  // return;
+}
 
-// createTask();
-// createTask();
-newTask2.removeTask();
-newTask1.deleteTask();
-
-// Log status
-console.log(`Tasks to do: `, tasksToDo, `--------------------------------`);
-console.log(`Tasks finished: `, tasksFinished, `--------------------------------`);
-console.log(`Tasks deleted: `, tasksDeleted);
+// Submit form to create a new task
+let submitBtn = document.getElementById("create-button");
+submitBtn.addEventListener("click", createTask);

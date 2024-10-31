@@ -10,3 +10,12 @@
   background-color: darkgreen;
   color: white;
 }
+
+.task-element {
+  display: inline-block;
+  width: 90%;
+  padding: 5px;
+  margin: auto;
+  background-color: darkblue;
+  color: white;
+}
