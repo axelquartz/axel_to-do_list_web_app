@@ -6,10 +6,10 @@ let tasksDeleted = [];
 // List containers
 let toDoList = document.getElementById("to-do-list");
 let finishedList = document.getElementById("finished-list");
-deletedList = document.getElementById("deleted-list");
+let deletedList = document.getElementById("deleted-list");
 let taskContainer = document.createElement("div");
 
-// Create a task template (object or class): name, description, method to move task to other list
+// Create a task Class with its properties and methods
 class Task {
   constructor(name, description, status) {
     this.name = name;
@@ -43,36 +43,66 @@ class Task {
   }
 
   finishTask() {
-    // Move task to other list
     if (this.status === "to do" || this.status === "deleted") {
       tasksFinished.push(this);
       tasksToDo.splice(tasksToDo.indexOf(this), 1);
       this.status = "finished";
       finishedList.appendChild(this.taskContainer);
       this.taskLabel.innerText = this.status;
+      // Log status
+      console.log(`Tasks to do: `, tasksToDo, `--------------------------------`);
+      console.log(`Tasks finished: `, tasksFinished, `--------------------------------`);
+      console.log(`Tasks deleted: `, tasksDeleted, `--------------------------------`);
     }
   }
-  // Function to remove task
+  // Function to remove task\
   removeTask() {
-    if (this.status === "to do" || this.status === "finished") {
+    if (this.status === "to do") {
       tasksDeleted.push(this);
       tasksToDo.splice(tasksToDo.indexOf(this), 1);
-      tasksFinished.splice(tasksDeleted.indexOf(this), 1);
       this.status = "deleted";
       //Remove from DOM
       deletedList.appendChild(this.taskContainer);
       this.taskLabel.innerText = this.status;
+      // Log status
+      console.log(`Tasks to do: `, tasksToDo, `--------------------------------`);
+      console.log(`Tasks finished: `, tasksFinished, `--------------------------------`);
+      console.log(`Tasks deleted: `, tasksDeleted, `--------------------------------`);
+    } else if (this.status === "finished") {
+      tasksDeleted.push(this);
+      tasksFinished.splice(tasksFinished.indexOf(this), 1);
+      this.status = "deleted";
+      //Remove from DOM
+      deletedList.appendChild(this.taskContainer);
+      this.taskLabel.innerText = this.status;
+      // Log status
+      console.log(`Tasks to do: `, tasksToDo, `--------------------------------`);
+      console.log(`Tasks finished: `, tasksFinished, `--------------------------------`);
+      console.log(`Tasks deleted: `, tasksDeleted, `--------------------------------`);
     }
   }
   // Function to restore deleted task
   restoreTask() {
-    if (this.status === "deleted" || this.status === "finished") {
+    if (this.status === "deleted") {
       tasksToDo.push(this);
       tasksDeleted.splice(tasksDeleted.indexOf(this), 1);
-      tasksFinished.splice(tasksDeleted.indexOf(this), 1);
       this.status = "to do";
       toDoList.appendChild(this.taskContainer);
       this.taskLabel.innerText = this.status;
+      // Log status
+      console.log(`Tasks to do: `, tasksToDo, `--------------------------------`);
+      console.log(`Tasks finished: `, tasksFinished, `--------------------------------`);
+      console.log(`Tasks deleted: `, tasksDeleted, `--------------------------------`);
+    } else if (this.status === "finished") {
+      tasksToDo.push(this);
+      tasksFinished.splice(tasksFinished.indexOf(this), 1);
+      this.status = "to do";
+      toDoList.appendChild(this.taskContainer);
+      this.taskLabel.innerText = this.status;
+      // Log status
+      console.log(`Tasks to do: `, tasksToDo, `--------------------------------`);
+      console.log(`Tasks finished: `, tasksFinished, `--------------------------------`);
+      console.log(`Tasks deleted: `, tasksDeleted, `--------------------------------`);
     }
   }
 }
@@ -97,3 +127,8 @@ function createTask() {
 // Submit form to create a new task
 let submitBtn = document.getElementById("create-button");
 submitBtn.addEventListener("click", createTask);
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    createTask();
+  }
+});
