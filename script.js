@@ -8,8 +8,6 @@ let toDoList = document.getElementById("to-do-list");
 let finishedList = document.getElementById("finished-list");
 deletedList = document.getElementById("deleted-list");
 let taskContainer = document.createElement("div");
-// let taskAction = document.createElement("button");
-// taskAction.innerText = "Action";
 
 // Create a task template (object or class): name, description, method to move task to other list
 class Task {
@@ -85,8 +83,6 @@ function createTask() {
   let taskDescription = document.querySelector("#task-description").value;
   let newTask = new Task(taskName, taskDescription, "to do");
   tasksToDo.push(newTask);
-  // Append task to To Do list
-  // taskContainer.innerHTML = `<div class="task-element"><h2>${thisTask.name}</h2><p>${thisTask.description}</p></div>`;
   toDoList.appendChild(newTask.taskContainer);
   // Log status
   console.log(`Tasks to do: `, tasksToDo, `--------------------------------`);
