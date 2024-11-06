@@ -1,23 +1,29 @@
 :root {
-  background-color: #eee;
-  color: white;
+  background-color: #292929;
+  color: #dedede;
   margin: 0;
   padding: 0;
-  font-size: 16px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  color: grey;
+}
+
+html {
+  font-size: 16px;
 }
 
 p {
-  font-size: 0.75rem;
+  font-size: 0.85rem;
 }
 
 h1 {
-  font-size: 2rem;
+  font-size: 1.8rem;
 }
 
 h2 {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
+}
+
+h3 {
+  font-size: 1rem;
 }
 
 button {
@@ -25,23 +31,44 @@ button {
   height: 32px;
   border-radius: 4px;
   border: none;
-  background-color: darkgreen;
+  background-color: #dedede;
+  /* padding: 0 44px; */
+  margin: 0 4px;
+  justify-self: center;
+}
+
+#create-task-button {
+  width: 100%;
+}
+
+#cancel-button {
+  background-color: #282828;
+  border: 1px solid #dedede;
+  color: #dedede;
+  width: 100%;
 }
 
 input {
   height: 32px;
   border-radius: 4px;
-  border: 1px solid grey;
+  border: none;
+  background-color: #393939;
+  justify-self: center;
 }
 
 textarea {
   border-radius: 4px;
-  border: 1px solid grey;
+  border: none;
+  background-color: #393939;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 0.85rem;
+  justify-self: center;
+  width: 100%;
 }
 
 label {
   display: block;
-  margin: 4px 0;
+  margin: 6px 0;
   text-align: left;
   align-self: left;
   font-size: 1rem;
@@ -52,7 +79,6 @@ label {
   justify-content: flex-start;
   flex-direction: column;
   align-items: flex-start;
-  height: 100vh;
   margin: 8px;
 }
 
@@ -68,10 +94,11 @@ label {
   width: 300px;
   height: 800px;
   overflow-y: scroll;
-  background-color: #ddd;
-  border-radius: 4px;
+  background-color: #232323;
+  border-radius: 8px;
   color: grey;
   margin: 0 4px;
+  padding: 4px 0;
 }
 
 .list::-webkit-scrollbar {
@@ -80,12 +107,23 @@ label {
 
 .task-element {
   display: inline-block;
+  color: #dedede;
   width: 90%;
   padding: 5px;
   margin: 4px auto;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background-color: #e8e8e8;
+  border: 1px solid #404040;
+  border-radius: 8px;
+}
+
+.task-element button {
+  width: 124px;
+  margin: 4px 4px;
+}
+
+.delete-button {
+  background-color: #232323;
+  border: 1px solid #dedede;
+  color: #dedede;
 }
 
 #create-task-form {
@@ -94,10 +132,11 @@ label {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: darkblue;
+  background-color: #282828;
   height: 480px;
   width: 600px;
   position: absolute;
+  border-radius: 8px;
   top: 0;
   left: 0;
   right: 0;

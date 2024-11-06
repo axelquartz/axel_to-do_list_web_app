@@ -21,7 +21,7 @@ class Task {
     this.taskContainer = document.createElement("div");
     this.taskContainer.classList.add("task-element");
     this.taskAction = document.createElement("button");
-    this.taskAction.innerText = "Action";
+    this.taskAction.innerText = "Finish";
     this.taskDelete = document.createElement("button");
     this.taskDelete.innerText = "Delete";
     this.taskDelete.addEventListener("click", () => {
@@ -29,10 +29,11 @@ class Task {
     });
     this.taskLabel = document.createElement("label");
     this.taskLabel.innerText = this.status;
-    this.taskContainer.innerHTML = `<h2>${this.name}</h2><p>${this.description}</p>`;
+    this.taskContainer.innerHTML = `<label>${this.status}</label><h3>${this.name}</h3><p>${this.description}</p>`;
+    this.taskDelete.classList.add("delete-button");
     this.taskContainer.append(this.taskDelete);
     this.taskContainer.append(this.taskAction);
-    this.taskContainer.append(this.taskLabel);
+
     this.taskAction.addEventListener("click", () => {
       // Switch list
       if (this.status === "to do") {
