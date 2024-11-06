@@ -9,6 +9,9 @@ let finishedList = document.getElementById("finished-list");
 let deletedList = document.getElementById("deleted-list");
 let taskContainer = document.createElement("div");
 
+// Form to create task container
+let createTaskForm = document.getElementById("create-task-form");
+
 // Create a task Class with its properties and methods
 class Task {
   constructor(name, description, status) {
@@ -109,6 +112,9 @@ class Task {
 
 // Create a new task
 function createTask() {
+  createTaskForm.style.display = "none";
+  coverContainer.classList.remove("cover");
+
   let taskName = document.querySelector("#task-name").value;
   let taskDescription = document.querySelector("#task-description").value;
   let newTask = new Task(taskName, taskDescription, "to do");
@@ -124,6 +130,15 @@ function createTask() {
   return;
 }
 
+// Open form to create a new task
+let openTaskForm = document.getElementById("create-task-button");
+let coverContainer = document.querySelector("#cover-placeholder");
+
+openTaskForm.addEventListener("click", () => {
+  createTaskForm.style.display = "flex";
+  coverContainer.classList.add("cover");
+});
+
 // Submit form to create a new task
 let submitBtn = document.getElementById("create-button");
 submitBtn.addEventListener("click", createTask);
@@ -131,4 +146,13 @@ document.addEventListener("keydown", (event) => {
   if (event.key === "Enter") {
     createTask();
   }
+});
+
+// Close form to create a new task (Cancel)
+let cancelBtn = document.getElementById("cancel-button");
+cancelBtn.addEventListener("click", () => {
+  createTaskForm.style.display = "none";
+  coverContainer.classList.remove("cover");
+  document.querySelector("#task-name").value = "";
+  document.querySelector("#task-description").value = "";
 });

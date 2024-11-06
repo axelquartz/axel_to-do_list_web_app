@@ -1,12 +1,16 @@
 :root {
   background-color: #131313;
   color: white;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
 }
 
 .list {
   display: inline-block;
   width: 300px;
-  height: 600px;
+  height: 800px;
+  overflow-y: scroll;
   background-color: darkgreen;
   color: white;
 }
@@ -18,4 +22,34 @@
   margin: auto;
   background-color: darkblue;
   color: white;
+}
+
+#create-task-form {
+  display: none;
+  /* display: flex; */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: darkblue;
+  height: 600px;
+  width: 800px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  z-index: 2;
+}
+
+/* Class to hide the background */
+.cover {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
 }
