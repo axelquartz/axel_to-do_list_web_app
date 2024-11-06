@@ -20,10 +20,14 @@
       <!--Form to Create Task-->
       <div id="create-task-form">
         <h2>Create Task</h2>
-        <input type="text" name="task-name" id="task-name" placeholder="Enter task name" />
-        <input type="text" name="task-description" id="task-description" placeholder="Enter description" />
-        <button id="create-button">Create Tasks</button>
-        <button id="cancel-button">Cancel</button>
+        <div id="task-creation-content">
+          <label for="task-name">Name of your task</label>
+          <input type="text" name="task-name" id="task-name" placeholder="Enter task name" />
+          <label for="task-description">Description of the task</label>
+          <textarea type="text" name="task-description" id="task-description" placeholder="Enter description" rows="6" cols="50"></textarea>
+          <button id="create-button">Create Tasks</button>
+          <button id="cancel-button">Cancel</button>
+        </div>
       </div>
 
       <!-- Cover -->
@@ -31,9 +35,12 @@
 
       <!-- Task lists -->
       <div class="container">
-        <div class="list" id="to-do-list">To Do</div>
-        <div class="list" id="finished-list">Finished</div>
-        <div class="list" id="deleted-list">Deleted</div>
+        <!-- Lists -->
+        <div id="lists-group">
+          <div class="list" id="to-do-list"><h3>To Do</h3></div>
+          <div class="list" id="finished-list"><h3>Finished</h3></div>
+          <div class="list" id="deleted-list"><h3>Deleted</h3></div>
+        </div>
 
         <!--Button to Create Task-->
         <div>

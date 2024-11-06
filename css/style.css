@@ -1,27 +1,91 @@
 :root {
-  background-color: #131313;
+  background-color: #eee;
   color: white;
-  font-size: 16px;
   margin: 0;
   padding: 0;
+  font-size: 16px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: grey;
+}
+
+p {
+  font-size: 0.75rem;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+button {
+  cursor: pointer;
+  height: 32px;
+  border-radius: 4px;
+  border: none;
+  background-color: darkgreen;
+}
+
+input {
+  height: 32px;
+  border-radius: 4px;
+  border: 1px solid grey;
+}
+
+textarea {
+  border-radius: 4px;
+  border: 1px solid grey;
+}
+
+label {
+  display: block;
+  margin: 4px 0;
+  text-align: left;
+  align-self: left;
+  font-size: 1rem;
+}
+
+.container {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 100vh;
+  margin: 8px;
+}
+
+#lists-group {
+  display: flex;
+  width: 100%;
+  margin: 16px 0;
 }
 
 .list {
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
   width: 300px;
   height: 800px;
   overflow-y: scroll;
-  background-color: darkgreen;
-  color: white;
+  background-color: #ddd;
+  border-radius: 4px;
+  color: grey;
+  margin: 0 4px;
+}
+
+.list::-webkit-scrollbar {
+  display: none;
 }
 
 .task-element {
   display: inline-block;
   width: 90%;
   padding: 5px;
-  margin: auto;
-  background-color: darkblue;
-  color: white;
+  margin: 4px auto;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #e8e8e8;
 }
 
 #create-task-form {
@@ -31,8 +95,8 @@
   align-items: center;
   justify-content: center;
   background-color: darkblue;
-  height: 600px;
-  width: 800px;
+  height: 480px;
+  width: 600px;
   position: absolute;
   top: 0;
   left: 0;
@@ -40,6 +104,20 @@
   bottom: 0;
   margin: auto;
   z-index: 2;
+}
+
+#task-creation-content {
+  width: 80%;
+  text-align: center;
+  margin: 20px auto;
+  /* background-color: darkgreen; */
+}
+
+#create-task-form input,
+#create-task-form textarea,
+#create-task-form button {
+  margin: 4px 0;
+  width: 100%;
 }
 
 /* Class to hide the background */
